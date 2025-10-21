@@ -9,6 +9,7 @@ class Session extends EventEmitter {
   [immerable] = true; // 为什么要加这个，参阅immer文档：https://immerjs.github.io/immer/complex-objects/
   public id: string;  // 这里不能使用 readonly，因为消息提交时需要前端生成一个临时id，等消息返回后再替换成后端的正式id
   public title: string;
+  public serviceId?: string;
   public messageList: Message[];
   public readonly store: SessionStore;
   public attachment?: Array<{
@@ -21,10 +22,11 @@ class Session extends EventEmitter {
   /** 可以用来存放业务侧的自定义字段 */
   public extra?: Record<string, any>;
 
-  constructor(option: Pick<Session, 'id' | 'title' | 'store' | 'attachment' | 'extra'>) {
+  constructor(option: Pick<Session, 'id' | 'title' | 'store' | 'attachment' | 'extra' | 'serviceId'>) {
     super();
     this.id = option.id;
     this.title = option.title;
+    this.serviceId = option.serviceId;
     this.messageList = [];
     this.store = option.store;
     this.attachment = option.attachment = [];

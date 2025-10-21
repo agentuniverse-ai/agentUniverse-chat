@@ -40,7 +40,7 @@ class Message extends EventEmitter {
   public readonly role: Role;
   public id: string; // 这里不能使用 readonly，因为消息提交时需要前端生成一个临时id，等消息返回后再替换成后端的正式id
   public error?: MessageError;                        // 错误信息
-  public content: MaybeArray<string | React.ReactElement | { card: React.FC<any> & { flag: string }; props: any }>; // 文本或组件卡片
+  public content: MaybeArray<string | React.ReactElement | { card: React.FC<any> & { flag?: string }; props: any }>; // 文本或组件卡片 // 修复：将 flag 属性标记为可选，以解决 TypeScript 类型检查问题
   public contentString?: string | null;  // content 转化的字符串,给一些只读取字符串的功能使用，比如各种 actions
   public status: MessageStatus;                       // 解读进度，如果是 running，消息发送按钮会禁用
   public connectTime: number;                         // 该次消息请求连接耗费的时间，用来判断是否弱网环境     

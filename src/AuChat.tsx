@@ -17,14 +17,19 @@ import './reset.css';
 export default class AuChat extends EventEmitter {
   public container: any;
   public richInput: any;
+  private root: ReactDOM.Root | null = null; // 添加 root 属性，用于存储 React 根实例
+
   constructor(config: Partial<ConfigState>) {
     super();
     this.container = config.container;
     this.init(config);
 
     if (config.container) {
-      const root = ReactDOM.createRoot(config.container);
-      root.render(<Home />);
+      // 修复：确保 ReactDOM.createRoot 只被调用一次
+      if (!this.root) { // 如果 root 不存在，则创建
+        this.root = ReactDOM.createRoot(config.container);
+      }
+      this.root.render(<Home />); // 渲染或更新
     }
   };
 

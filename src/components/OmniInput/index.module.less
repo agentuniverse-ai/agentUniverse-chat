@@ -1,7 +1,14 @@
-.container {
+.wrapper {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; /* 恢复为底部对齐 */
+  gap: 8px; /* 按钮和输入框之间的间距 */
 }
 
 .skillContainer {
@@ -15,6 +22,7 @@
   box-shadow: 0 12px 48px 0 var(--border-color);
   background: var(--background-color-3);
   overflow: hidden;
+  flex-grow: 1; /* 允许 inputContainer 占据剩余空间 */
 }
 
 .skillWrap {
@@ -53,9 +61,10 @@
   display: flex;
   gap: 12px;
   position: relative;
-  width: calc(100% - 2px);
+  width: 100%; /* 占据 inputContainer 的全部宽度 */
   padding: 12px;
-  margin: 1px;
+  /* margin: 1px; */ /* 移除 margin，由 inputContainer 统一管理 */
+  flex-grow: 1; /* 允许 input box 占据剩余空间 */
 
   .textArea {
     width: calc(100% - 52px);
@@ -127,5 +136,35 @@
     width: max-content;
     opacity: .3;
     pointer-events: none;
+  }
+}
+
+.agentSelectContainer {
+  /* No special styles needed now */
+}
+
+.agentSelectButton {
+  width: 140px; /* 固定宽度 */
+   height: 54px;  
+  padding: 0 12px;
+  border-radius: 12px !important; /* 与输入框圆角一致 */
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--background-color-3) !important;
+  box-shadow: 0 12px 48px 0 var(--border-color);
+  transition: all 0.2s ease-in-out;
+  
+  /* 以下为修复文字截断和溢出的关键样式 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  /* 使用 Flex 确保内部文字在拉伸后依然居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border-color: #1677ff !important;
+    color: #1677ff !important;
   }
 }

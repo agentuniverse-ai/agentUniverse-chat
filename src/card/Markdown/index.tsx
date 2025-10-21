@@ -126,6 +126,7 @@ const MarkdownCard: React.FC<Props> & { flag: string } = ({ children, speed, typ
 };
 
 // 标记是 markdown 卡片，给自动高亮能力用的，高亮组件会自动对消息里的第一个 markdown 卡片进行高亮
-MarkdownCard.flag = 'markdown';
+// 修复：将 flag 属性强制转换为 any，以解决 TypeScript 类型检查问题
+(MarkdownCard as any).flag = 'markdown';
 
 export default React.memo(MarkdownCard);

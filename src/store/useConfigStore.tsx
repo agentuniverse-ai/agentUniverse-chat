@@ -99,9 +99,10 @@ export interface ConfigState {
   feedbackFormList: any[];
   sessionHandler?: {
     initSessionList(): Promise<Session[]>;
-    addSession({title}: {title: string}): Promise<void>;
+    addSession({title, service_id}: {title: string, service_id?: string}): Promise<{ id: string; title: string }>;
     deleteSession(sessionId: string): Promise<void>;
     updateSession(sessionId: string, title: string): Promise<void>;
+    sendPrompt?: ({ sessionId, prompt }: { sessionId: string; prompt: Prompt }) => Promise<void>;
   }
 
   messageHandler?: {
@@ -177,7 +178,7 @@ const useConfigStore = create<ConfigStore>()((set, get) => ({
   skillValue: undefined,
   sessionHandler: {
     initSessionList: async () => {throw new Error('未设置 initSessionList')},
-    addSession: () => {throw new Error('未设置 addSession')},
+    addSession: async () => {throw new Error('未设置 addSession')},
     deleteSession: async () => {throw new Error('未设置 deleteSession')},
     updateSession: async () => {throw new Error('未设置 updateSession')},
   },

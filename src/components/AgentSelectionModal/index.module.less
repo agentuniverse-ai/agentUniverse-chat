@@ -1,0 +1,79 @@
+.modal {
+  :global {
+    .ant-modal-content {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    .ant-modal-header {
+      background-color: transparent;
+      border-bottom: none;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    .ant-modal-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+    .ant-modal-close {
+      top: 24px;
+    }
+  }
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+  padding: 24px 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.agentCard {
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #f9fafb;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  &.selected {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+
+  :global {
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+}
+
+.cardContent {
+  text-align: left;
+}
+
+.agentName {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111827;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.agentDesc {
+  font-size: 14px;
+  color: #6b7280;
+  min-height: 42px;
+  line-height: 1.5;
+}
